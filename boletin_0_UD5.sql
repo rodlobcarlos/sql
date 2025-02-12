@@ -34,9 +34,9 @@ INSERT INTO Comentarios(comentario) VALUES
 ("Este es el tercer comentario");
 
 CREATE VIEW comentarios_por_alumno AS
-SELECT nombrepr.nombre, trc.comentario
-FROM Alumno pr
-JOIN comentarios trc ON pr.ID = trc.alumno_relacionado;
+SELECT Alumno.nombre, Comentarios.comentario
+FROM Alumno, comentarios
+WHERE comentarios.ID = Alumno.ID;
 
 GRANT SHOW VIEW ON basededatos.comentarios_por_alumno TO "administrador"@"localhost";
 SHOW GRANTS FOR  "administrador"@"localhost";
@@ -45,9 +45,20 @@ REVOKE SHOW VIEW ON basededatos.comentarios_por_alumno FROM "administrador"@"loc
 SHOW GRANTS FOR  "administrador"@"localhost";
 
 CREATE USER "alumno"@"localhost" IDENTIFIED BY "pass_alum"; /*No ocurre nada*/
-GRANT connect ON basededatos TO "alumno"@"localhost";
+GRANT CREATE, DELETE, UPDATE, SELECT ON basededatos TO "alumno"@"localhost";
 
-DROP USER "alumno"@"localhost";
+create user "alumno" ;
+
+CREATE ROLE conexion;
+CREATE ROLE consulta_de_datos;
+
+grant all privileges on *.* to "conexion" with grant option;
+grant conexion to "alumno"@"localhost";
+
+set default role conexion to "alumno"@"localhost";
+show grants for "alumno"@"localhost";
+
+DROP USER "alumno";
 
 /*DROP USER "administrador";
 /*DROP TABLE Alumno;
