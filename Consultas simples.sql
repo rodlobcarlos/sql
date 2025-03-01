@@ -215,3 +215,30 @@ from ALUMNO;
 select Nombre, Apellidos, floor(datediff(curdate(), FECHA_NAC) / 365) as EDAD
 from ALUMNO
 order by EDAD desc limit 4;
+
+-- Ejercicio 31
+select count(ID_ALUM)
+from ALUMNO;
+
+-- Ejercicio 32
+select count(Nacido_en)   
+from PROFESOR
+where Nacido_en = 2;
+
+-- Ejercicio 33
+select max(Nota2) from MATRICULADO;
+
+-- Ejercicio 34
+select min(Nota1) from MATRICULADO;
+
+-- Ejercicio 35
+select sum(Nota1) 
+from MATRICULADO
+where ID_ASIG = 1;
+
+-- Ejercicio 36
+select sum(Nota1) as SUMA, count(Nota1) as NÚMERO_DE_NOTAS1, sum(Nota1) / 10 as MEDIA
+from MATRICULADO
+where ID_ASIG = 1
+
+ 
