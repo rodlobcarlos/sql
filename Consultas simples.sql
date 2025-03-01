@@ -173,8 +173,45 @@ select*from ALUMNO where DNI like "2%";
 select ID_PROV from PROVINCIA;
 
 -- Ejercicio 20
-select*from MATRICULADO; -- POR TERMINAR --
-alter table MATRICULADO add column MEDIA decimal(4,2);
-SELECT avg(Nota1) from MATRICULADO;
-SELECT avg(Nota2) from MATRICULADO;
-SELECT avg(Nota3) from MATRICULADO;
+SELECT ID_ALUM, ID_ASIG, Nota1, Nota2, Nota3, (Nota1 + Nota2 + Nota3) / 3.0 AS Media
+FROM MATRICULADO
+ORDER BY Media desc;
+
+-- Ejercicio 21
+select*from MATRICULADO where ID_ASIG = 1 and Nota1 >= 5 and Nota2 >= 5 and Nota3 >= 5;
+
+-- Ejercicio 22
+select*from MATRICULADO where ID_ALUM and Nota1 = 10 or Nota2 = 10 or Nota3 = 10;
+
+-- Ejercicio 23
+select*from MATRICULADO where ID_ASIG = 2 and (Nota1 >= 5 or Nota2 >= 5 or Nota3 >= 5);
+
+-- Ejercicio 24
+select*from MATRICULADO where Nota1 >= 5
+order by Nota2 asc, Nota3 asc;
+
+-- Ejercicio 25
+select*from ALUMNO where FECHA_NAC like "1985%";
+
+-- Ejercicio 26
+select ID_ALUM, DNI, Nombre, Apellidos, FECHA_NAC, Nacido_en, month(FECHA_NAC) as MES
+from ALUMNO
+order by FECHA_NAC;
+
+-- Ejercicio 27
+select ID_ALUM, DNI, Nombre, Apellidos, FECHA_NAC, Nacido_en, 
+concat("Nacido el dia ", day(FECHA_NAC), " del ", month(FECHA_NAC), " de ", year(FECHA_NAC)) as fecha_de_nacimiento
+from ALUMNO;
+
+-- Ejercicio 28
+select Nombre, Apellidos, floor(datediff(curdate(), FECHA_NAC) / 365) as EDAD
+from ALUMNO;
+
+-- Ejercicio 29
+select ID_ALUM, DNI, Nombre, Apellidos, FECHA_NAC, Nacido_en,  datediff(curdate(), FECHA_NAC) as dias_vividos
+from ALUMNO;
+
+-- Ejercicio 30
+select Nombre, Apellidos, floor(datediff(curdate(), FECHA_NAC) / 365) as EDAD
+from ALUMNO
+order by EDAD desc limit 4;
