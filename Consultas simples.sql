@@ -240,5 +240,3 @@ where ID_ASIG = 1;
 select sum(Nota1) as SUMA, count(Nota1) as NÚMERO_DE_NOTAS1, sum(Nota1) / 10 as MEDIA
 from MATRICULADO
 where ID_ASIG = 1
-
- 

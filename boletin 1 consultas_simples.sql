@@ -199,8 +199,10 @@ select distinct cod_tipo_movimiento
 from MOVIMIENTO;
 
 -- Ejercicio 8 // POR TERMINAR
-select len(apellidos)
+select apellidos
 from CLIENTE
-where apellidos;
+where length(apellidos = 5);
 
 -- Ejercicio 9
+select left(nombre, 2) as Dos_primeras_letras, (substring_index2(apellidos," ", 1)) as Primer_apellido
+from CLIENTE;
