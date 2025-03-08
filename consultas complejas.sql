@@ -140,3 +140,85 @@ INSERT INTO ventas
 VALUES ('S1', 'P2', 'J4', 175);
 
 -- Ejercicio 1
+select*from proyecto;
+
+-- Ejercicio 2
+select*from proyecto
+where ciudad = "Londres";
+
+-- Ejercicio 3
+select codpie
+from ventas
+where codpro = "S2"
+order by codpie;
+
+ -- Ejercicio 4
+ select codpro
+ from ventas
+ where codpj = "J1"
+ order by codpro;
+ 
+ -- Ejercicio 5
+ select distinct pieza.color, pieza.ciudad
+ from pieza;
+ 
+ -- Ejercicio 6
+ select codpro, codpie, codpj
+ from ventas
+ where cantidad is not null;
+ 
+ -- Ejercicio 7
+ select codpj, ciudad
+ from proyecto
+ where substring(ciudad, 2, 1) = "o";
+ 
+-- Ejercicio 8
+select nompie
+from pieza
+where length(nompie > 5)
+order by nompie asc;
+
+-- Ejercicio 9
+select left(nompj, 3) as nombre_abreviados
+from proyecto;
+
+-- Ejercicio 10
+select right(nompro, 3) as orden_afabetico
+from proveedor
+order by nompro;
+
+-- Ejercicio 11
+select count(distinct codpie) as piezas_distintas
+from pieza;
+
+-- Ejercicio 12
+select count(distinct codpie) as numero
+from pieza;
+
+-- Ejercicio 13
+select count(codpj) as num_proy
+from ventas
+where codpro = "S1";
+
+-- Ejercicio 14
+select count(codpie) as num_piezas
+from ventas
+where codpie = "P1" and codpro = "S1";
+
+-- Ejercicio 15
+select count(codpie) as media_piezas, max(cantidad) as cantidad_max, min(cantidad) as cantidad_min
+from ventas;
+
+-- Ejercicio 16
+select cantidad
+from ventas
+where cantidad between 300 and 750;
+
+-- Ejercicio 17
+select codpie,
+case when pieza.color != "gris" or "azul" then "VERDADERO"
+else "FALSO" end as caso_color
+from pieza;
+
+-- Ejercicio 18
+select 
