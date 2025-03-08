@@ -204,5 +204,24 @@ from CLIENTE
 where length(apellidos = 5);
 
 -- Ejercicio 9
-select left(nombre, 2) as Dos_primeras_letras, (substring_index2(apellidos," ", 1)) as Primer_apellido
+select concat(left(nombre, 2), " ", left(apellidos,locate(" " , apellidos)-1)) as nick
 from CLIENTE;
+
+-- Ejercicio 10
+select direccion
+from SUCURSAL
+where cod_sucursal = 1;
+
+-- Ejercicio 11
+select nombre 
+from CLIENTE
+where nombre = reverse(nombre);
+
+-- Ejercicio 12 // NO SALE
+alter table CLIENTE
+add fecha_de_nacimiento date;
+UPDATE CLIENTE
+SET fecha_de_nacimiento = (select CURRENT_DATE);
+select*from CLIENTE;
+
+-- Ejercicio 13
