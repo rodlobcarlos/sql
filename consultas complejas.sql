@@ -221,4 +221,22 @@ else "FALSO" end as caso_color
 from pieza;
 
 -- Ejercicio 18
-select 
+alter table ventas
+add column fecha_adquisicion date;
+select*from ventas;
+
+-- Ejercicio 19
+update ventas
+set fecha_adquisicion = current_date
+where codpie = "P2";
+select*from ventas;
+
+-- Ejercicio 20
+select date_format(current_date, "dd mm yyyy", "en-US") as formateado
+from ventas
+where fecha_adquisicion;
+
+-- Ejercicio 21
+select date_format(current_date, "12-11-2001") as formateado
+from ventas
+where codpj = "J1" and codpj = "J2";
