@@ -19,8 +19,8 @@ DATEDIFF(CONCAT('2025-', MONTH(fecha_nac), '-', DAY(fecha_nac)), CURDATE()),
 
 -- Ejercicio 5
 select Nombre, Apellidos 
-from ALUMNO
-where DNI %2 = 0;
+from PROFESOR
+where DNI %2 = 0; 
 
 -- Ejercicio 6
 SELECT nombre, apellidos, dni,
