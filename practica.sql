@@ -24,18 +24,31 @@ id_cliente int primary key,
 nombre_cliente varchar(50)
 );
 
+create table pedido (
+id_cliente int ,
+id_producto int
+);
+
 create table producto (
 id_producto int primary key,
+id_cliente int,
 nombre_producto varchar(50),
 constraint pf_producto foreign key(id_producto) references cliente(id_cliente)
 );
+drop table producto;
 
 insert into cliente values
 (1, "Carlos");
 
 insert into producto values
-(1, "Coche");
+(2, "Coche");
 
 create view info_cruzada as
-select id_cliente as cliente, id_producto as producto
-from producto
+select id_cliente, id_producto 
+from producto;
+select*from info_cruzada;
+
+create user "becario"@"localhost" identified by "becario1";
+grant select on info_cruzada to "becario1";
+
+drop user "becario"@"localhost";
