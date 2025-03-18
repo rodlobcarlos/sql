@@ -44,7 +44,7 @@ SHOW GRANTS FOR  "administrador"@"localhost";
 REVOKE SHOW VIEW ON basededatos.comentarios_por_alumno FROM "administrador"@"localhost";
 SHOW GRANTS FOR  "administrador"@"localhost";
 
-CREATE USER "alumno"@"localhost" IDENTIFIED BY "pass_alum"; /*No ocurre nada*/
+CREATE USER "alumno"@"localhost" IDENTIFIED BY "pass_alum"; /*No pasa nada*/
 GRANT CREATE, DELETE, UPDATE, SELECT ON basededatos TO "alumno"@"localhost";
 
 create user "alumno" ;
