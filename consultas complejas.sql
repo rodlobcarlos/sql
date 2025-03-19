@@ -232,11 +232,13 @@ where codpie = "P2";
 select*from ventas;
 
 -- Ejercicio 20
-select date_format(current_date, "dd mm yyyy", "en-US") as formateado
-from ventas
-where fecha_adquisicion;
+select date_format(fecha_adquisicion, "%Y" "%M" "%D") as formateado
+from ventas;
 
 -- Ejercicio 21
 select date_format(current_date, "12-11-2001") as formateado
 from ventas
-where codpj = "J1" and codpj = "J2";
+where codpj = "J1" and codpj = "J2"; 
+
+-- Ejercicio 22
+select ciudad 
