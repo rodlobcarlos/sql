@@ -241,7 +241,7 @@ from ventas
 where codpj = "J1" and codpj = "J2"; 
 
 -- Ejercicio 22
-select pieza.ciudad 
+select pieza.ciudad
 from pieza
 join proveedor
 on proveedor.ciudad = pieza.ciudad
@@ -253,3 +253,23 @@ select*from pieza
 cross join proveedor;
 
 -- Ejercicio 24
+select*from pieza
+cross join proveedor
+cross join proyecto;
+
+-- Ejercicio 25
+select pieza.codpie, proveedor.codpro, proyecto.codpj
+from pieza
+cross join proveedor
+cross join proyecto;
+
+-- Ejercicio 26
+select distinct ciudad
+from pieza
+where pieza.codpie and  proveedor.codpro and proyecto.codpj;
+
+-- Ejercicio 27
+-- POR TERMINAR
+
+-- Ejercicio 28
+select codpie
