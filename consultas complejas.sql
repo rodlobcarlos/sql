@@ -297,9 +297,9 @@ select codpie
 from pieza, proyecto
 join proveedor on proveedor.ciudad = proyecto.ciudad;
 
--- Ejercicio 32 // POR TERMINAR
-select proyecto.codjp, proveedor.codpro
-from ventas
+-- Ejercicio 32 // TENGO DUDAS
+select proyecto.codpj, proveedor.codpro
+from ventas, proyecto
 join proveedor on proveedor.ciudad != proyecto.ciudad;
 
 -- Ejercicio 33
@@ -313,3 +313,68 @@ from pieza
 join proveedor on proveedor.codpro  =  proveedor.codpro;
 
 -- Ejercicio 35
+select codpie, codpj, cantidad
+from ventas;
+
+-- Ejercicio 36
+select codpie, codpj, cantidad
+from ventas
+where cantidad > 320;
+
+-- Ejercicio 37
+select distinct upper(nompro)
+from proveedor
+where codpro 
+in (
+select codpro from ventas where ventas.cantidad > 100 and ventas.codpie = "P1"
+);
+
+-- Ejercicio 38
+select nompj
+from proyecto
+join proveedor on proveedor.codpro = "S1";
+
+-- Ejercicio 39
+select color
+from pieza
+where codpie 
+in (
+select codpie from ventas where ventas.codpro = "S1"
+);
+
+-- Ejercicio 40
+select codpie
+from ventas
+where codpj
+in (
+select codpj from proyecto where proyecto.ciudad = "Londres");
+
+-- Ejercicio 41 // POR TERMINAR
+select codpj
+from proyecto;
+
+-- Ejercicio 42 // POR TERMINAR
+select codpj
+from ventas
+where codpie 
+in (
+select codpie from ventas where ventas.codpie = "P1" and (ventas.cantidad > ventas.codpj = "J1") 
+in
+(
+select codpie from ventas where ventas.codpie = "J1"));
+
+-- Ejercicio 43 // POR TERMINAR
+select codpro from ventas;
+
+-- Ejercicio 44
+select distinct codpj
+from ventas
+join proveedor on proveedor.codpro = "S1";
+
+-- Ejercicio 45
+select codpro
+from ventas
+where codpie 
+in (
+select codpie from ventas where ventas.codpie = "rojo"
+);
