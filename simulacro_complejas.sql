@@ -1,5 +1,6 @@
 create database baloncesto;
 use baloncesto;
+
 create table jugadores(
 codigo int,
 nombre varchar(30),
@@ -8,6 +9,7 @@ altura varchar (4),
 peso int,
 posicion varchar(5),
 nombre_equipo varchar(20)
+constraint pf_jugadores 
 );
 
 create table estadisticas(
@@ -24,6 +26,7 @@ nombre varchar(20),
 ciudad varchar (20),
 conferencia varchar (4),
 division varchar (20)
+
 );
 
 create table partidos(
@@ -88,3 +91,5 @@ select*from jugadores
 join equipos on equipos.division = "Central"
 where division in (
 select peso from equipos where (jugadores.nombre = "%A" and jugadores.nombre = "E%") and jugadores.peso > avg(peso));
+
+-- Ejercicio 2
