@@ -302,15 +302,16 @@ select proyecto.codpj, proveedor.codpro
 from ventas, proyecto
 join proveedor on proveedor.ciudad != proyecto.ciudad;
 
--- Ejercicio 33
-select codpie
+-- Ejercicio 33 // ESTÁ MAL
+select codpie, codpie
 from pieza
 join proveedor on proveedor.codpro =  proveedor.codpro;
 
--- Ejercicio 34
-select distinct codpie 
-from pieza
-join proveedor on proveedor.codpro  =  proveedor.codpro;
+-- Ejercicio 34 // ESTÁ MAL
+select distinct codpie, codpie
+from ventas 
+join proveedor on proveedor.codpro = proveedor.codpro 
+where codpie = codpie;
 
 -- Ejercicio 35
 select codpie, codpj, cantidad
@@ -349,32 +350,53 @@ where codpj
 in (
 select codpj from proyecto where proyecto.ciudad = "Londres");
 
--- Ejercicio 41 // POR TERMINAR
-select codpj
-from proyecto;
+-- Ejercicio 41 
+select proveedor.codpro 
+from proveedor 
+where proveedor.status < (
+	select status 
+    from proveedor
+    where proveedor.codpro = "S1"
+);
 
--- Ejercicio 42 // POR TERMINAR
+-- Ejercicio 42 
 select codpj
 from ventas
-where codpie 
-in (
-select codpie from ventas where ventas.codpie = "P1" and (ventas.cantidad > ventas.codpj = "J1") 
-in
-(
-select codpie from ventas where ventas.codpie = "J1"));
+where codpie = "P1" group by codpj having avg(cantidad) > (
+	select max(cantidad)
+    from ventas 
+    where codpie = "P1" and codpj = "J1"
+);
 
--- Ejercicio 43 // POR TERMINAR
-select codpro from ventas;
+-- Ejercicio 43 
+select codpro 
+from ventas
+where codpie = "P1" and cantidad > (
+	select avg(cantidad)
+    from ventas
+    where codpie = "P1" and codpj = codpj 
+);
 
 -- Ejercicio 44
-select distinct codpj
+select codpj
 from ventas
-join proveedor on proveedor.codpro = "S1";
+where codpro in (
+	select proveedor.codpro
+    from ventas
+    join proveedor on proveedor.codpro = proveedor.codpro
+    where proveedor.codpro = "S1"
+);
 
 -- Ejercicio 45
-select codpro
-from ventas
-where codpie 
-in (
-select codpie from ventas where ventas.codpie = "rojo"
+SELECT DISTINCT codpro
+FROM ventas 
+WHERE codpie IN (
+    -- Piezas suministradas por proveedores que suministran piezas rojas
+    SELECT pieza.codpie
+    FROM ventas 
+    JOIN pieza  ON pieza.codpie = pieza.codpie
+    WHERE pieza.color = 'Rojo'
 );
+
+-- Ejercicio 46
+select 
