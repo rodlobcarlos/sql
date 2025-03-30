@@ -243,51 +243,59 @@ where codpj = "J1" and codpj = "J2";
 -- Ejercicio 22
 select pieza.ciudad
 from pieza
-join proveedor
-on proveedor.ciudad = pieza.ciudad
-join proyecto
-on proyecto.ciudad = pieza.ciudad;
+join proveedor on proveedor.ciudad = pieza.ciudad
+join proyecto on proyecto.ciudad = pieza.ciudad;
 
 -- Ejercicio 23
 select*from pieza 
 cross join proveedor;
 
 -- Ejercicio 24
-select*from pieza
-cross join proveedor
-cross join proyecto;
+select distinct pieza.codpie, proveedor.codpro, proyecto.codpj
+from ventas
+join pieza on pieza.codpie = pieza.codpie
+join proveedor on proveedor.codpro = proveedor.codpro
+join proyecto on proyecto.codpj = proyecto.codpj
+where (pieza.ciudad = proveedor.ciudad and proveedor.ciudad = proyecto.ciudad);
 
 -- Ejercicio 25
-select pieza.codpie, proveedor.codpro, proyecto.codpj
-from pieza
-cross join proveedor
-cross join proyecto;
+select distinct pieza.codpie, proveedor.codpro, proyecto.codpj
+from ventas
+join pieza on pieza.codpie = pieza.codpie
+join proveedor on proveedor.codpro = proveedor.codpro
+join proyecto on proyecto.codpj = proyecto.codpj
+where (pieza.ciudad = proveedor.ciudad and proveedor.ciudad = proyecto.ciudad);
 
 -- Ejercicio 26
-select pieza.codpie, proveedor.codpro, proyecto.codpj
-from pieza
-join proveedor on proveedor.ciudad != pieza.ciudad
-join proyecto on proyecto.ciudad = proveedor.ciudad;
+select * from ventas
+join pieza on pieza.codpie = pieza.codpie
+join proveedor on proveedor.codpro = proveedor.codpro
+join proyecto on proyecto.codpj = proyecto.codpj
+where (pieza.ciudad = proveedor.ciudad and pieza.ciudad != proyecto.ciudad) or 
+(proyecto.ciudad = pieza.ciudad and proyecto.ciudad != proveedor.ciudad);
 
 -- Ejercicio 27
-select pieza.codpie, proveedor.codpro, proyecto.codpj
-from pieza
-join proveedor on proveedor.ciudad != pieza.ciudad
-join proyecto on proyecto.ciudad != proveedor.ciudad;
+select * from ventas
+join pieza on pieza.codpie = pieza.codpie
+join proveedor on proveedor.codpro = proveedor.codpro
+join proyecto on proyecto.codpj = proyecto.codpj
+where proveedor.ciudad != proyecto.ciudad and proyecto.ciudad != pieza.ciudad and pieza.ciudad != proveedor.ciudad;
 
 -- Ejercicio 28
-select codpie
-from pieza
-join proveedor on proveedor.ciudad = "Londres";
+select distinct codpie 
+from ventas
+join proveedor on proveedor.ciudad = proveedor.ciudad
+where proveedor.ciudad = "Londres";
 
 -- Ejercicio 29
 select codpie
-from pieza
-join proveedor on proveedor.ciudad = "Londres"
-join proyecto on proyecto.ciudad = "Londres";
+from ventas
+join proveedor on proveedor.ciudad = proveedor.ciudad
+join proyecto on proyecto.ciudad = proyecto.ciudad
+where proveedor.ciudad = "Londres" and proyecto.ciudad = "Londres";
 
 -- Ejercicio 30
-select pieza.ciudad
+select pieza.ciudad, codpro, codpj
 from pieza
 join proveedor on proveedor.codpro = "S1"
 join proyecto on proyecto.codpj = "J2";
@@ -398,5 +406,6 @@ WHERE codpie IN (
     WHERE pieza.color = 'Rojo'
 );
 
--- Ejercicio 46
-select 
+-- Ejercicio 46 // POR TERMINAR
+select codpie
+from pieza
