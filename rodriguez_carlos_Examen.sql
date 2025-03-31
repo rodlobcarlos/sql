@@ -695,9 +695,11 @@ where precision_mov < 100;
 select distinct id_pokemon
 from entrenamiento;
 
--- Ejercicio 20
+-- Ejercicio 20 // ESTA MAL
 select id_entrenador =
 case
-	when lleva_zapatillas = true = concat("Enhorabuena ", nombre, " has ganado un total de ",dinero, " pasta ", lleva_zapatillas)
-    when lleva_zapatillas = false = concat("Enhorabuena ", nombre, " has ganado un total de ",dinero, " pasta")
-from entrenador
+	when lleva_zapatillas = true then concat("Enhorabuena ", nombre, " has ganado un total de ",dinero, " pasta ", lleva_zapatillas)
+    when lleva_zapatillas = false then concat("Enhorabuena ", nombre, " has ganado un total de ",dinero, " pasta") end
+from entrenador;
+
+-- Ejercicio CLASE // NO SE HACE
