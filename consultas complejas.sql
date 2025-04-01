@@ -406,6 +406,51 @@ WHERE codpie IN (
     WHERE pieza.color = 'Rojo'
 );
 
--- Ejercicio 46 // POR TERMINAR
+-- Ejercicio 46 
 select codpie
-from pieza
+from ventas
+where exists (
+	select codpj from proyecto where proyecto.ciudad = "Londres"
+);
+
+-- Ejercicio 47 // POR TERMINAR
+select codpj
+from ventas
+where exists (
+	select codpie from ventas, proveedor where cod.pro = "S1"
+);
+
+-- Ejercicio 48 // POR TERMINAR
+select codpj
+from ventas, pieza
+where pieza.color != "rojo" in(
+	select ciudad
+    from ventas
+    join proveedor on proveedor.codpro = proveedor.codpro
+    where proveedor.ciudad = "Londres"
+);
+
+-- Ejercicio 49
+select proyecto.codpj
+from ventas, proyecto
+where codpro in (
+	select proveedor.codpro
+    from ventas
+    join proveedor on proveedor.codpro = proveedor.codpro
+    where proveedor.codpro = "S1"
+);
+
+-- Ejercicio 50
+select pieza.codpie
+from ventas, pieza
+join proyecto on proyecto.ciudad = proyecto.ciudad
+where proyecto.ciudad = "Londres";
+
+-- Ejercicio 51
+select *from ventas
+where codpie in (
+	select codpie
+    from ventas
+    join proyecto on proyecto.codpj = proyecto.codpj
+    where codpie = codpie 
+);
